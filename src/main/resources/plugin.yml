@@ -1,14 +1,15 @@
-name: SoundAbsorber
-main: jp.azisaba.lgw.soundabsorber.SoundAbsorber
-version: 1.0.0
+name: ${project.name}
+main: net.azisaba.soundabsorber.SoundAbsorber
+version: ${project.version}
 author: siloneco
-description: "Absorb loud weapon sound."
 depend: [ProtocolLib]
+description: ${project.description}
+website: ${project.url}
 commands:
   soundabsorber:
     aliases: ["sa"]
     permission: soundabsorber.command.soundabsorber
-    usage: /soundabsorber [level]
+    usage: /soundabsorber
 permissions:
   soundabsorber.command.soundabsorber:
     default: true

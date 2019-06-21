@@ -95,5 +95,10 @@
 			<artifactId>ProtocolLib</artifactId>
 			<version>4.4.0</version>
 		</dependency>
+		<dependency>
+			<groupId>net.azisaba</groupId>
+			<artifactId>PlayerSettings</artifactId>
+			<version>0.0.1-BETA</version>
+		</dependency>
 	</dependencies>
 </project>
