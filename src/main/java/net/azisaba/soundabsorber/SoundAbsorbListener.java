@@ -52,9 +52,9 @@ public class SoundAbsorbListener {
 
 						double volume = packet.getFloat().getValues().get(0);
 						double pitch = packet.getFloat().getValues().get(0);
-						int absorbLevel = PlayerSettingsManager.getAbsorbLevel(p);
+						double percent = SoundPercentageContainer.getAbsorbLevel(p);
 
-						if (absorbLevel <= 1) {
+						if (percent >= 100) {
 							if (p.getName().equals("siloneco")) {
 
 								List<String> sounds = data.getValues().stream()
@@ -90,7 +90,7 @@ public class SoundAbsorbListener {
 						}
 
 						volume *= adjust;
-						double times = (50 - absorbLevel) * 2 * adjust;
+						double times = percent * adjust;
 						float changeVolume = (float) (volume * times / 100);
 
 						try {
