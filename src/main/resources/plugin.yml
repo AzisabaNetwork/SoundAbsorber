@@ -1,0 +1,14 @@
+name: SoundAbsorber
+main: jp.azisaba.lgw.soundabsorber.SoundAbsorber
+version: 1.0.0
+author: siloneco
+description: "Absorb loud weapon sound."
+depend: [ProtocolLib]
+commands:
+  soundabsorber:
+    aliases: ["sa"]
+    permission: soundabsorber.command.soundabsorber
+    usage: /soundabsorber [level]
+permissions:
+  soundabsorber.command.soundabsorber:
+    default: true
