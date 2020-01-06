@@ -64,15 +64,15 @@
 		</repository>
 		<repository>
 			<id>rayzr-repo</id>
-			<url>https://cdn.rawgit.com/Rayzr522/maven-repo/master/</url>
+			<url>https://raw.githubusercontent.com/Rayzr522/maven-repo/master/</url>
 		</repository>
 		<repository>
 			<id>dmulloy2-repo</id>
-			<url>http://repo.dmulloy2.net/nexus/repository/public/</url>
+			<url>https://repo.dmulloy2.net/nexus/repository/public/</url>
 		</repository>
 		<repository>
 			<id>azisaba-repo</id>
-			<url>http://repo.azisaba.net/</url>
+			<url>https://mvn-repo.azisaba.net/</url>
 		</repository>
 	</repositories>
 
