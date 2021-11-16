@@ -67,7 +67,7 @@ public class SoundAbsorbListener {
 					
 						for (Sound s : data.getValues()) {
 								if (absorbSounds.containsKey(s) && (soundData.getPitch() < 0 || soundData.getPitch() == pitch)) {
-									adjust = soundData.getAdjust();
+									adjust = absorbSounds.get(s).getAdjust();
 									break;
 								}
 						}
