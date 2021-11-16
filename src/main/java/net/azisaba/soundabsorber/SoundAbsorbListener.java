@@ -49,7 +49,7 @@ public class SoundAbsorbListener {
 						double percent = SoundPercentageContainer.getAbsorbLevel(p);
 
 
-						if (p.getName().equals("siloneco")) {
+						if (percent >= 100 && p.getName().equals("siloneco")) {
 
 							List<String> sounds = data.getValues().stream()
 									.map(Sound::toString)
@@ -68,7 +68,6 @@ public class SoundAbsorbListener {
 						for (Sound s : data.getValues()) {
 								if (absorbSounds.containsKey(s) && (soundData.getPitch() < 0 || soundData.getPitch() == pitch)) {
 									adjust = absorbSounds.get(s).getAdjust();
-									break;
 								}
 						}
 						
