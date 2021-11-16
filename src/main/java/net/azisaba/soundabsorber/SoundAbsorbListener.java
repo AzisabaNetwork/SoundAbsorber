@@ -20,6 +20,8 @@ import net.md_5.bungee.api.ChatColor;
 public class SoundAbsorbListener {
 
 	private static SoundAbsorber plugin = null;
+
+	/*
 	private static final List<SoundData> absorbSounds = new ArrayList<>();
 
 	static {
@@ -34,6 +36,7 @@ public class SoundAbsorbListener {
 		absorbSounds.add(new SoundData(Sound.ENTITY_BAT_TAKEOFF));
 		//		cancelSounds.put(Sound.BLOCK_NOTE_HARP, 1d);
 	}
+	*/
 
 	public static void register(SoundAbsorber plugin) {
 		SoundAbsorbListener.plugin = plugin;
@@ -54,7 +57,7 @@ public class SoundAbsorbListener {
 						double pitch = packet.getFloat().getValues().get(0);
 						double percent = SoundPercentageContainer.getAbsorbLevel(p);
 
-						if (percent >= 100) {
+						//if (percent >= 100) {
 							if (p.getName().equals("siloneco")) {
 
 								List<String> sounds = data.getValues().stream()
@@ -69,11 +72,12 @@ public class SoundAbsorbListener {
 								p.sendMessage(msg);
 							}
 							return;
-						}
+						//}
 
 						boolean include = false;
 						double adjust = 1d;
 
+						/*
 						for (Sound s : data.getValues()) {
 							for (SoundData soundData : absorbSounds) {
 								if (soundData.getSound().equals(s)
@@ -88,6 +92,7 @@ public class SoundAbsorbListener {
 						if (!include) {
 							return;
 						}
+						*/
 
 						volume *= adjust;
 						double times = percent * adjust;
