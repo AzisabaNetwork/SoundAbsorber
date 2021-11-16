@@ -25,7 +25,7 @@ public class SoundAbsorbListener {
 	private static final HashMap<Sound, SoundData> adjustSounds = new HashMap<>();
 
 	static {
-		adjustSounds.add(Sound.ENTITY_BAT_TAKEOFF, new SoundData(Sound.ENTITY_BAT_TAKEOFF, 2.0f, 5d));
+		adjustSounds.put(Sound.ENTITY_BAT_TAKEOFF, new SoundData(Sound.ENTITY_BAT_TAKEOFF, 2.0f, 5d));
 		//		cancelSounds.put(Sound.BLOCK_NOTE_HARP, 1d);
 	}
 
