@@ -22,10 +22,10 @@ public class SoundAbsorbListener {
 	private static SoundAbsorber plugin = null;
 
 	
-	private static final HashMap<Sound, SoundData> absorbSounds = new HashMap<>();
+	private static final HashMap<Sound, SoundData> adjustSounds = new HashMap<>();
 
 	static {
-		absorbSounds.add(Sound.ENTITY_BAT_TAKEOFF, new SoundData(Sound.ENTITY_BAT_TAKEOFF, 2.0f, 5d));
+		adjustSounds.add(Sound.ENTITY_BAT_TAKEOFF, new SoundData(Sound.ENTITY_BAT_TAKEOFF, 2.0f, 5d));
 		//		cancelSounds.put(Sound.BLOCK_NOTE_HARP, 1d);
 	}
 
@@ -66,8 +66,8 @@ public class SoundAbsorbListener {
 						double adjust = 1d;
 					
 						for (Sound s : data.getValues()) {
-								if (absorbSounds.containsKey(s) && (soundData.getPitch() < 0 || soundData.getPitch() == pitch)) {
-									adjust = absorbSounds.get(s).getAdjust();
+								if (adjustSounds.containsKey(s) && (soundData.getPitch() < 0 || soundData.getPitch() == pitch)) {
+									adjust = adjustSounds.get(s).getAdjust();
 								}
 						}
 						
