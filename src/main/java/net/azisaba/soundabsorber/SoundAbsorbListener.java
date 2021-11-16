@@ -1,6 +1,6 @@
 package net.azisaba.soundabsorber;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,18 +20,12 @@ import net.md_5.bungee.api.ChatColor;
 public class SoundAbsorbListener {
 
 	private static SoundAbsorber plugin = null;
-	private static final List<SoundData> absorbSounds = new ArrayList<>();
+
+	
+	private static final HashMap<Sound, SoundData> adjustSounds = new HashMap<>();
 
 	static {
-		absorbSounds.add(new SoundData(Sound.BLOCK_NOTE_BASS));
-		absorbSounds.add(new SoundData(Sound.BLOCK_NOTE_PLING));
-		absorbSounds.add(new SoundData(Sound.ENTITY_BLAZE_HURT));
-		absorbSounds.add(new SoundData(Sound.BLOCK_NOTE_BASEDRUM));
-		absorbSounds.add(new SoundData(Sound.ENTITY_GENERIC_EXPLODE));
-		absorbSounds.add(new SoundData(Sound.ENTITY_ZOMBIE_ATTACK_DOOR_WOOD));
-
-		absorbSounds.add(new SoundData(Sound.ENTITY_BAT_TAKEOFF, 2.0f, 5d));
-		absorbSounds.add(new SoundData(Sound.ENTITY_BAT_TAKEOFF));
+		adjustSounds.add(Sound.ENTITY_BAT_TAKEOFF, new SoundData(Sound.ENTITY_BAT_TAKEOFF, 2.0f, 5d));
 		//		cancelSounds.put(Sound.BLOCK_NOTE_HARP, 1d);
 	}
 
@@ -54,40 +48,29 @@ public class SoundAbsorbListener {
 						double pitch = packet.getFloat().getValues().get(0);
 						double percent = SoundPercentageContainer.getAbsorbLevel(p);
 
-						if (percent >= 100) {
-							if (p.getName().equals("siloneco")) {
 
-								List<String> sounds = data.getValues().stream()
-										.map(Sound::toString)
-										.collect(Collectors.toList());
+						if (percent >= 100 && p.getName().equals("siloneco")) {
 
-								String msg = ChatColor.YELLOW + "Sounds: " + ChatColor.RED + "["
-										+ String.join(", ", sounds) + "] "
-										+ ChatColor.YELLOW + "Volume: " + ChatColor.RED + String.format("%.3f", volume);
+							List<String> sounds = data.getValues().stream()
+									.map(Sound::toString)
+									.collect(Collectors.toList());
 
-								JSONMessage.create(msg).actionbar(p);
-								p.sendMessage(msg);
-							}
-							return;
+							String msg = ChatColor.YELLOW + "Sounds: " + ChatColor.RED + "["
+									+ String.join(", ", sounds) + "] "
+									+ ChatColor.YELLOW + "Volume: " + ChatColor.RED + String.format("%.3f", volume);
+
+							JSONMessage.create(msg).actionbar(p);
+							p.sendMessage(msg);
 						}
 
-						boolean include = false;
 						double adjust = 1d;
-
+					
 						for (Sound s : data.getValues()) {
-							for (SoundData soundData : absorbSounds) {
-								if (soundData.getSound().equals(s)
-										&& (soundData.getPitch() < 0 || soundData.getPitch() == pitch)) {
-									include = true;
-									adjust = soundData.getAdjust();
-									break;
+								if (adjustSounds.containsKey(s) && (soundData.getPitch() < 0 || soundData.getPitch() == pitch)) {
+									adjust = adjustSounds.get(s).getAdjust();
 								}
-							}
 						}
-
-						if (!include) {
-							return;
-						}
+						
 
 						volume *= adjust;
 						double times = percent * adjust;
